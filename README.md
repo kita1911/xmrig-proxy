@@ -22,7 +22,17 @@ This proxy designed and created for handle donation traffic from XMRig. No one o
 * Binary releases: https://github.com/xmrig/xmrig-proxy/releases
 * Git tree: https://github.com/xmrig/xmrig-proxy.git
   * Clone with `git clone https://github.com/xmrig/xmrig-proxy.git` :hammer: [Build instructions](https://github.com/xmrig/xmrig-proxy/wiki/Build).
-  
+## build
+sudo apt update
+sudo apt install git build-essential cmake libuv1-dev libssl-dev lld
+
+git clone https://github.com/xmrig/xmrig-proxy.git
+cd xmrig-proxy
+
+mkdir build && cd build
+cmake .. -DWITH_TLS=ON
+make -j$(nproc)
+
 ## Usage
 :boom: If you use Linux and want handle more than **1000 connections**, you need [increase limits of open files](https://github.com/xmrig/xmrig-proxy/wiki/Ubuntu-setup).
 

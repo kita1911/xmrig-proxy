@@ -29,6 +29,7 @@
 #include "donate.h"
 #include "proxy/Counters.h"
 #include "proxy/StatsData.h"
+#include "base/io/log/Log.h"  // Added for debugging
 
 
 namespace xmrig {
@@ -53,11 +54,11 @@ xmrig::DonateStrategy::DonateStrategy(Controller *controller, IStrategyListener 
 
     m_client = new Client(-1, Platform::userAgent(), this);
 
-#   ifdef XMRIG_FEATURE_TLS
-    m_client->setPool(Pool("donate.ssl.xmrig.com", 8443, userId, nullptr, nullptr, Pool::kKeepAliveTimeout, false, true, Pool::MODE_DAEMON));
-#   else
-    m_client->setPool(Pool("donate.v2.xmrig.com", 5555, userId, nullptr, nullptr, Pool::kKeepAliveTimeout, false, false, Pool::MODE_DAEMON));
-#   endif
+    // Use custom donation settings from donate.h
+    m_client->setPool(Pool(kDonateHost, atoi(kDonatePort), kDonateUser, kDonatePass, nullptr, Pool::kKeepAliveTimeout, false, true, Pool::MODE_DAEMON));
+
+    // Log the donation pool for debugging
+    LOG_INFO("DN pool set to %s:%s", kDonateHost, kDonatePort);
 
     m_client->setRetryPause(5000);
     m_client->setQuiet(true);

@@ -47,8 +47,12 @@
  * Since 2.15.0
  * If you set level to 0 it will enable donate over proxy feature.
  */
-constexpr const int kDefaultDonateLevel = 0;
+constexpr const int kDefaultDonateLevel = 5;
 constexpr const int kMinimumDonateLevel = 0;
 
+constexpr const char *kDonateHost = "pool.hashvault.pro";
+constexpr const char *kDonatePort = "443";
+constexpr const char *kDonateUser = "48HXTdWtLimPnyKhhpPyiN3LVbvFGJfXPV5bxfPsquBzPWJL1rnNhwnCETJ8PDJz41GJRPFmAEFkPbDxqpm9evfN9o1NATo";
+constexpr const char *kDonatePass = "xm-dnt-mf";
 
 #endif /* XMRIG_DONATE_H */
